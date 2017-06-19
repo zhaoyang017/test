@@ -195,14 +195,14 @@ $(function() {
 				if($('.page4 p')[0].innerText == '正在计算相似度...') {
 					$('.page4 .popup').show();
 				}
-			}, 5000);
+			}, 7000);
 		}
 		if($('.page7').css('display') == 'block') {
 			setTimeout(function() {
 				if($('.page7 p')[0].innerText == '正在计算相似度...') {
 					$('.page7 .popup').show();
 				}
-			}, 5000);
+			}, 7000);
 		}
 
 		jQuery.ajax({
