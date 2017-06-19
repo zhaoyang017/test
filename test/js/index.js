@@ -190,11 +190,21 @@ $(function() {
 	function check_info2(uri2) {
 		var aid = '6b628d50d3a045b8b9f7a3db9b7cd544';
 		var akey = '8ed3d0cfa21b4c378a96f7f678d2654c';
-		setTimeout(function(){
-			if($('.page4 p')[0].innerText == '正在计算相似度...' != '相似度'){
-				$('.page4 .popup').show();
-			}
-		},5000);
+		if($('.page4').css('display') == 'block') {
+			setTimeout(function() {
+				if($('.page4 p')[0].innerText == '正在计算相似度...') {
+					$('.page4 .popup').show();
+				}
+			}, 5000);
+		}
+		if($('.page7').css('display') == 'block') {
+			setTimeout(function() {
+				if($('.page7 p')[0].innerText == '正在计算相似度...') {
+					$('.page7 .popup').show();
+				}
+			}, 5000);
+		}
+
 		jQuery.ajax({
 			type: "POST",
 			url: "http://api.eyekey.com/face/Check/checking", //检测有效后会由系统生成唯一的face_id
