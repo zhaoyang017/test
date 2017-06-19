@@ -175,6 +175,9 @@
 	position: absolute;
 	left: 262px;
 	top: 324px;
+	/*top: 0;
+	bottom: 0;*/
+	/*margin: auto;*/
 	background: #fff;
 	border: 1px solid #aaa;
 	box-shadow: 5px 5px 20px 1px #999;
@@ -195,6 +198,29 @@
 	right: 0;
 	bottom: 60px;
 	margin: auto;
+}
+.page3 .popup,.page6 .popup{
+	width: 640px;
+	height: 1038px;
+	position: absolute;
+	z-index: 200;
+	top: 0;
+	background-color: rgba(0,0,0,0.5);
+	display: none;
+}
+.page3 .popup .messText,.page6 .popup .messText{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+.page3 .popup .cancel,.page6 .popup .cancel{
+	position: absolute;
+	z-index: 100;
+	left: 432px;
+	top: 402px;
 }
 /*第五页*/
 .page5 .bg{
