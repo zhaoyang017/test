@@ -1,0 +1,268 @@
+/*公共样式*/
+*{
+	margin: 0;
+	padding: 0;
+}
+.page{
+	position: absolute;
+	width: 640px;
+	height: 1038px;
+}
+.hidden{
+	display: none;
+}
+/*第一页*/
+.page1 .btn{
+	position: absolute;
+	z-index: 10;
+	left: 0;
+	right: 0;
+	margin: auto;
+	top: 830px;
+}
+/*第二页*/
+.page2 .bg{
+	position: absolute;
+}
+.page2 .content{
+	position: absolute;
+	z-index: 10;
+}
+.page2 .look{
+	position: absolute;
+	width: 260px;
+	height: 290px;
+}
+.page2 .look .people{
+	position: absolute;
+	left: 80px;
+	top: 82px;
+	width: 143px;
+	height: 160px;
+}
+.page2 .look3 .people,.page2 .look4 .people{
+	top: 62px;
+}
+.page2 .look2 .people,.page2 .look4 .people{
+	left: 76px;
+}
+.page2 .look .peopleBg{
+	position: absolute;
+	z-index: 100;
+}
+.page2 .look1{
+	left: 60px;
+	top:170px ;
+}
+.page2 .look2{
+	top: 170px;
+	left: 310px;
+}
+.page2 .look3{
+	top: 530px;
+	left:60px ;
+}
+.page2 .look4{
+	left: 310px;
+	top: 530px;
+}
+.page2 .okBtn{
+	position: absolute;
+	z-index: 100;
+	top: 840px;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+.page2 .look:before {
+	content: "\2714";
+	display: block;
+	position: absolute;
+	right: 90px;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	background: rgba(196,40,73,0.5);
+	border-radius: 50px;
+	color: #fff;
+	text-align: center;
+	font-size: 30px;
+	z-index: 10;
+	-o-user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	cursor: pointer;
+	display: none;
+}
+.page2 .look1:before,.page2 .look2:before{
+	top: 138px;
+}
+.page2 .look3:before,.page2 .look4:before{
+	top: 120px;
+}
+.page2 .look.selected:before {
+	display: block;
+}
+/*第三页和第六页*/
+.page3,.page6{
+	background: url('../images/BJ3.png');
+}
+.page3 input,.page6 input{
+	display: none;
+}
+.page3 .xk,.page6 .xk{
+	position: absolute;
+	left: 92px;
+	top: 370px;
+	background-color: #fff;
+	border: 1px solid #eee;
+	box-shadow: 5px 5px 20px 1px #999;
+	transform: rotate(-10deg);
+}
+.page3 .xk .img,.page6 .xk .img{
+	width: 170px;
+	padding: 20px 20px 10px 20px;
+}
+.page3 .xk .font,page6 .xk .font{
+	display: block;
+	padding: 0 0 20px 20px;
+}
+.page3 .photo,.page6 .photo{
+	position: absolute;
+	left: 247px;
+	top: 249px;
+	width: 339px;
+	height: 469px;
+	background:url('../images/photo.png');
+}
+.page3 .btn,.page6 .btn{
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 80px;
+	margin: auto;
+}
+/*第四页和第七页*/
+.page4,.page7{
+	background: url('../images/BJ4.png');
+}
+.page4 p,.page7 p{
+	text-align: center;
+	padding-top: 100px;
+	font-size: 60px;
+	color: #c42849;
+	font-family: '微软雅黑';
+	font-weight: bold;
+}
+.page4 .xk,.page7 .xk{
+	position: absolute;
+	left: 92px;
+	top: 390px;
+	background-color: #fff;
+	border: 1px solid #aaa;
+	box-shadow: 5px 5px 20px 1px #999;
+	transform: rotate(-10deg);
+}
+.page4 .xk .show,.page7 .xk .show{
+	width: 170px;
+	padding: 20px 20px 10px 20px;
+}
+.page4 .xk .font,.page7 .xk .font{
+	display: block;
+	padding: 0 0 10px 20px;
+}
+.page4 .photo,.page7 .photo{
+	position: absolute;
+	left: 262px;
+	top: 324px;
+	background: #fff;
+	border: 1px solid #aaa;
+	box-shadow: 5px 5px 20px 1px #999;
+	text-align: left;
+}
+.page4 .photo .show,.page7 .photo .show{
+	width: 240px;
+	padding: 20px 20px 10px 20px;
+}
+.page4 .photo .font,.page7 .photo .font{
+	display: block;
+	padding: 0 0 10px 20px;
+}
+
+.page4 .btn,.page7 .btn{
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 60px;
+	margin: auto;
+}
+/*第五页*/
+.page5 .bg{
+	position: absolute;
+}
+.page5 .text{
+	position: absolute;
+	left: 126px;
+	top: 260px;
+	font-size: 38px;
+}
+.page5 .text p{
+	line-height: 62px;
+}
+.page5 .text p:nth-child(2){
+	margin-top: 70px;
+}
+
+.page5 .btn{
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	top: 830px;
+}
+/*第八页*/
+.page8 .bg{
+	position: absolute;
+}
+.page8 .wrap{
+	position: absolute;
+	top: 452px;
+	border: 1px solid #aaa;
+}
+.page8 .img{
+	width: 114px;
+	padding: 10px;
+}
+.page8 .forward{
+	left: 95px;
+}
+.page8 .last{
+	left:258px ;
+}
+.page8 .star{
+	left:424px ;
+}
+.page8 .fo{
+	position: absolute;
+	top: 422px;
+}
+.page8 .foForward{
+	left: 130px;
+}
+.page8 .foLast{
+	left:293px ;
+}
+.page8 .foStar{
+	left:459px ;
+}
+.page8 .font{
+	display: block;
+	padding: 0 0 10px 10px;
+}
+.page8 .btn{
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	top: 830px;
+}
