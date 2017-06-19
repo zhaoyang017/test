@@ -1,124 +1,129 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>genghuam2</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no">
-	<link rel="stylesheet" type="text/css" href="css/index.css">
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
-</head>
-<body>
-	<div class="page page1 ">
-		<img src="images/BJ.jpg" alt="" class="bg" />
-		<img src="images/START.png" alt="" class="btn" />
-	</div>
-	<div class="page2 page hidden">
-		<img src="images/BJ2.png" alt="" class="bg" />
-		<div class="content">
-			<div class="look1 look">
-				<img class="people" src="images/1.png"/>
-				<img class="peopleBg" src="images/look1.png"/>
-			</div>
-			<div class="look2 look">
-				<img class="people" src="images/2.png"/>
-				<img class="peopleBg" src="images/look2.png"/>
-			</div>
-			<div class="look3 look">
-				<img class="people" src="images/3.png"/>
-				<img class="peopleBg" src="images/look3.png"/>
-			</div>
-			<div class="look4 look">
-				<img class="people" src="images/4.png"/>
-				<img class="peopleBg" src="images/look4.png"/>
-			</div>
 
+	<head>
+		<title>genghuam2</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+	</head>
+
+	<body>
+		<div class="page page1 ">
+			<img src="images/BJ.jpg" alt="" class="bg" />
+			<img src="images/START.png" alt="" class="btn" />
 		</div>
-		<img src="images/OK.png" alt="" class="okBtn" />
-	</div>
-	<div class="page page3 hidden">
-		<div class="xk">
-			<img class="img">
-			<img src="images/font.png" class="font">
+		<div class="page2 page hidden">
+			<img src="images/BJ2.png" alt="" class="bg" />
+			<div class="content">
+				<div class="look1 look">
+					<img class="people" src="images/1.png" />
+					<img class="peopleBg" src="images/look1.png" />
+				</div>
+				<div class="look2 look">
+					<img class="people" src="images/2.png" />
+					<img class="peopleBg" src="images/look2.png" />
+				</div>
+				<div class="look3 look">
+					<img class="people" src="images/3.png" />
+					<img class="peopleBg" src="images/look3.png" />
+				</div>
+				<div class="look4 look">
+					<img class="people" src="images/4.png" />
+					<img class="peopleBg" src="images/look4.png" />
+				</div>
+
+			</div>
+			<img src="images/OK.png" alt="" class="okBtn" />
 		</div>
-		<div class="photo"></div>
-		<label>
+		<div class="page page3 hidden">
+			<div class="xk">
+				<img class="img">
+				<img src="images/font.png" class="font">
+			</div>
+			<div class="photo"></div>
+			<label>
 			<img class="btn" src="images/SHANGCHUAN.png">
 			<input type="file" id='file'>
 		</label>
-		<div class="popup">
-			<img class="messText" src="images/kuang.png"/>
-			<img class="cancel" src="images/X.png"/>
+
 		</div>
-	</div>
-	<div class="page page4 hidden">
-		<p>正在计算相似度...</p>
-		<div class="xk">
-			<img class="show">
-			<img src="images/font.png" class="font">
+		<div class="page page4 hidden">
+			<p>正在计算相似度...</p>
+			<div class="xk">
+				<img class="show">
+				<img src="images/font.png" class="font">
+			</div>
+			<div class="photo">
+				<img id='show' class="show">
+				<img src="images/font.png" class="font">
+			</div>
+			<img src="images/MJ.png" class="btn">
+			<div class="popup">
+				<img class="messText" src="images/kuang.png" />
+				<img class="cancel" src="images/X.png" />
+			</div>
 		</div>
-		<div class="photo">
-			<img id='show' class="show">
-			<img src="images/font.png" class="font">
+		<div class="page page5 hidden">
+			<img src="images/BJ5.png" alt="" class="bg" />
+			<div class="text">
+				<p>根据<span></span>%结果，深度<br>分析获得提高相似度<br>秘籍。。。</p>
+				<p>分析报告：<br>明星妆容list，找彩妆师<br>帮你提高相似度!</p>
+			</div>
+			<img src="images/anniu.png" alt="" class="btn" />
 		</div>
-		<img src="images/MJ.png" class="btn">
-	</div>
-	<div class="page page5 hidden">
-		<img src="images/BJ5.png" alt="" class="bg" />
-		<div class="text">
-			<p>根据<span></span>%结果，深度<br>分析获得提高相似度<br>秘籍。。。</p>
-			<p>分析报告：<br>明星妆容list，找彩妆师<br>帮你提高相似度!</p>
-		</div>
-		<img src="images/anniu.png" alt="" class="btn" />
-	</div>
-	<div class="page page6 hidden">
-		<div class="xk">
-			<img class="img">
-			<img src="images/font.png" class="font">
-		</div>
-		<div class="photo"></div>
-		<label>
+		<div class="page page6 hidden">
+			<div class="xk">
+				<img class="img">
+				<img src="images/font.png" class="font">
+			</div>
+			<div class="photo"></div>
+			<label>
 			<img src="images/SHANGCHUAN.png" class="btn">
 			<input type="file" id="file2">
 		</label>
-		<div class="popup">
-			<img class="messText" src="images/kuang.png"/>
-			<img class="cancel" src="images/X.png"/>
-		</div>
-	</div>
-	<div class="page page7 hidden">
-		<p>正在计算相似度...</p>
-		<div class="xk">
-			<img src="images/timg.jpg" class="show">
-			<img src="images/font.png" class="font">
-		</div>
-		<div class="photo">
-			<img id='show2' class="show">
-			<img src="images/font.png" class="font">
-		</div>
-		<img src="images/MJ.png" class="btn">
 
-	</div>
-	<div class="page8 page hidden">
-		<img src="images/BJ7.png" alt="" class="bg" />
-		<img src="images/forward.png" class="fo foForward">
-		<img src="images/last.png" class="fo foLast">
-		<img src="images/star.png" class="fo foStar">
-		<div class="wrap forward">
-			<img src="" alt="" class="img" />
-			<img src="images/font2.png" class="font">
 		</div>
-		<div class="wrap last">
-			<img src="" class="img"/>
-			<img src="images/font2.png" class="font">
+		<div class="page page7 hidden">
+			<p>正在计算相似度...</p>
+			<div class="xk">
+				<img src="images/timg.jpg" class="show">
+				<img src="images/font.png" class="font">
+			</div>
+			<div class="photo">
+				<img id='show2' class="show">
+				<img src="images/font.png" class="font">
+			</div>
+			<img src="images/MJ.png" class="btn">
+			<div class="popup">
+				<img class="messText" src="images/kuang.png" />
+				<img class="cancel" src="images/X.png" />
+			</div>
+
 		</div>
-		<div class="wrap star">
-			<img src="" class="img"/>
-			<img src="images/font2.png" class="font">
+		<div class="page8 page hidden">
+			<img src="images/BJ7.png" alt="" class="bg" />
+			<img src="images/forward.png" class="fo foForward">
+			<img src="images/last.png" class="fo foLast">
+			<img src="images/star.png" class="fo foStar">
+			<div class="wrap forward">
+				<img src="" alt="" class="img" />
+				<img src="images/font2.png" class="font">
+			</div>
+			<div class="wrap last">
+				<img src="" class="img" />
+				<img src="images/font2.png" class="font">
+			</div>
+			<div class="wrap star">
+				<img src="" class="img" />
+				<img src="images/font2.png" class="font">
+			</div>
+			<img class="btn" src="images/FX.png" />
 		</div>
-		<img class="btn" src="images/FX.png"/>
-	</div>
-		<img class="btn" src="images/FX.png"/>
-	</div>
-</body>
+		<img class="btn" src="images/FX.png" />
+		</div>
+	</body>
+
 </html>

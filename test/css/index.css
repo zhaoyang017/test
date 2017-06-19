@@ -199,7 +199,7 @@
 	bottom: 60px;
 	margin: auto;
 }
-.page3 .popup,.page6 .popup{
+.page4 .popup,.page7 .popup{
 	width: 640px;
 	height: 1038px;
 	position: absolute;
@@ -208,7 +208,7 @@
 	background-color: rgba(0,0,0,0.5);
 	display: none;
 }
-.page3 .popup .messText,.page6 .popup .messText{
+.page4 .popup .messText,.page7 .popup .messText{
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -216,7 +216,7 @@
 	bottom: 0;
 	margin: auto;
 }
-.page3 .popup .cancel,.page6 .popup .cancel{
+.page4 .popup .cancel,.page7 .popup .cancel{
 	position: absolute;
 	z-index: 100;
 	left: 432px;

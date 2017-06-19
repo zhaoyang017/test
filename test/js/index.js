@@ -56,6 +56,8 @@ $(function() {
 		photo.readAsDataURL(file);
 		photo.onload = function(e) {
 			document.getElementById('show').src = this.result;
+			$('.page3').hide();
+			$('.page4').show().siblings().hide();
 			/*相似度比较*/
 			var f1 = $('.page4 .xk img')[0];
 			var f2 = $('.page4 .photo img').attr('src');
@@ -116,6 +118,8 @@ $(function() {
 		photo.readAsDataURL(file);
 		photo.onload = function(e) {
 			document.getElementById('show2').src = this.result;
+			$('.page6').hide();
+			$('.page7').show().siblings().hide();
 			/*相似度比较*/
 			var f1 = $('.page7 .xk img')[0];
 			var f2 = $('.page7 .photo img').attr('src');
@@ -199,25 +203,23 @@ $(function() {
 			contentType: "application/x-www-form-urlencoded",
 			dataType: "json",
 			success: function(data) {
-				if($('.page3').css('display') == 'block') {
+				if($('.page4').css('display') == 'block') {
 					if(data.res_code == '1067') {
-						$('.page3 .popup').show();
+						$('.page4 .popup').show();
 					} else {
 						face_id2 = data.face[0].face_id;
 						match_compare();
-						$('.page3').hide();
-						$('.page4').show().siblings().hide();
+
 					}
 				}
-				if($('.page6').css('display') == 'block') {
+				if($('.page7').css('display') == 'block') {
 
 					if(data.res_code == '1067') {
-						$('.page6 .popup').show();
+						$('.page7 .popup').show();
 					} else {
 						face_id2 = data.face[0].face_id;
 						match_compare();
-						$('.page6').hide();
-						$('.page7').show().siblings().hide();
+
 					}
 				}
 
@@ -232,15 +234,17 @@ $(function() {
 		});
 	}
 
-	$('.page3 .cancel').click(function() {
+	$('.page4 .cancel').click(function() {
 
-		$('.page3 .popup').hide();
+		$('.page4 .popup').hide();
+		$('.page3').show().siblings().hide();
 	})
 
-	$('.page6 .cancel').click(function() {
+	$('.page7 .cancel').click(function() {
 
-		$('.page6 .popup').hide();
-		
+		$('.page7 .popup').hide();
+		$('.page6').show().siblings().hide();
+
 	})
 
 	function match_compare() {
