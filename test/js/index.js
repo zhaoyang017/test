@@ -190,6 +190,13 @@ $(function() {
 	function check_info2(uri2) {
 		var aid = '6b628d50d3a045b8b9f7a3db9b7cd544';
 		var akey = '8ed3d0cfa21b4c378a96f7f678d2654c';
+		setTimeout(function(){
+			if($('.page4 p').subString(0,3) != '相似度'){
+				
+				$('.page4 .popup').show();
+				
+			}
+		},10000);
 		jQuery.ajax({
 			type: "POST",
 			url: "http://api.eyekey.com/face/Check/checking", //检测有效后会由系统生成唯一的face_id
