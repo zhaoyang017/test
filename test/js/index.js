@@ -191,6 +191,7 @@ $(function() {
 		var aid = '6b628d50d3a045b8b9f7a3db9b7cd544';
 		var akey = '8ed3d0cfa21b4c378a96f7f678d2654c';
 		if($('.page4').css('display') == 'block') {
+
 			setTimeout(function() {
 				if($('.page4 p')[0].innerText == '正在计算相似度...') {
 					$('.page4 .popup').show();
@@ -219,24 +220,14 @@ $(function() {
 			dataType: "json",
 			success: function(data) {
 				if($('.page4').css('display') == 'block') {
-					if(data.res_code == '1067') {
-						$('.page4 .popup').show();
-					} else {
 						face_id2 = data.face[0].face_id;
 						match_compare();
 
-					}
 				}
 				if($('.page7').css('display') == 'block') {
-
-					if(data.res_code == '1067') {
-						$('.page7 .popup').show();
-					} else {
 						face_id2 = data.face[0].face_id;
 						match_compare();
-
 					}
-				}
 
 			},
 			error: function(res) {
