@@ -161,6 +161,7 @@ $(function() {
 			contentType: "application/x-www-form-urlencoded",
 			dataType: "json",
 			success: function(data) {
+
 				if(data.res_code == "0000" && index == 0) {
 					face_id1 = data.face[0].face_id;
 					index++;
@@ -214,23 +215,27 @@ $(function() {
 				if($('.page4').css('display') == 'block') {
 					face_id2 = data.face[0].face_id;
 					match_compare();
+					
+					// 第四页跳转第五页
+					$('.page4 .btn').click(function() {
+						$('.page5').show().siblings().hide();
+					});
 
 				}
 				if($('.page7').css('display') == 'block') {
 					face_id2 = data.face[0].face_id;
 					match_compare();
+					
+					// 第六页跳转第七页
+					$('.page6 label').click(function() {
+	
+						$('.page6 #file2').val('');
+	
+					})
 				}
-				// 第四页跳转第五页
-				$('.page4 .btn').click(function() {
-					$('.page5').show().siblings().hide();
-				});
+				
 
-				// 第六页跳转第七页
-				$('.page6 label').click(function() {
-
-					$('.page6 #file2').val('');
-
-				})
+				
 
 			},
 			error: function(res) {
