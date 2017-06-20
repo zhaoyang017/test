@@ -1,15 +1,15 @@
 $(function() {
 	//判断设备
-	  var platfrom = navigator.userAgent;
-	  var regplatfrom = /iPhone/gi;
-	  console.log("IOS");
-	  if(!regplatfrom.test(platfrom)) {
-	      console.log("Android");
-	      $("#file").attr("accept", "image/*");
-	      $("#file").attr("capture", "camera");
-	      $("#file2").attr("accept", "image/*");
-	      $("#file2").attr("capture", "camera");
-	  }
+//	  var platfrom = navigator.userAgent;
+//	  var regplatfrom = /iPhone/gi;
+//	  console.log("IOS");
+//	  if(!regplatfrom.test(platfrom)) {
+//	      console.log("Android");
+//	      $("#file").attr("accept", "image/*");
+//	      $("#file").attr("capture", "camera");
+//	      $("#file2").attr("accept", "image/*");
+//	      $("#file2").attr("capture", "camera");
+//	  }
 	// 第一页跳转第二页
 	$('.page1 .btn').click(function() {
 		$('.page2').show().siblings().hide();
@@ -187,7 +187,7 @@ $(function() {
 				if($('.page4 p')[0].innerText == '正在计算相似度...') {
 					$('.page4 .popup').show();
 				}
-			}, 7000);
+			}, 5000);
 		}
 		if($('.page7').css('display') == 'block') {
 
@@ -195,7 +195,7 @@ $(function() {
 				if($('.page7 p')[0].innerText == '正在计算相似度...') {
 					$('.page7 .popup').show();
 				}
-			}, 7000);
+			}, 5000);
 		}
 
 		jQuery.ajax({
