@@ -80,21 +80,12 @@ $(function() {
 			check_info(face_id1, face_id2);
 		}
 	});
-	// 第四页跳转第五页
-	$('.page4 .btn').click(function() {
-		$('.page5').show().siblings().hide();
-	});
+
 	// 第五页跳转第六页
 	$('.page5 .btn').click(function() {
 		$('.page6').show().siblings().hide();
 		$('.page7 p').html('正在计算相似度...');
 	});
-	// 第六页跳转第七页
-	$('.page6 label').click(function() {
-
-		$('.page6 #file2').val('');
-
-	})
 
 	var face_id3 = "";
 	$('.page6 input').change(function() {
@@ -199,6 +190,7 @@ $(function() {
 			}, 7000);
 		}
 		if($('.page7').css('display') == 'block') {
+
 			setTimeout(function() {
 				if($('.page7 p')[0].innerText == '正在计算相似度...') {
 					$('.page7 .popup').show();
@@ -220,14 +212,25 @@ $(function() {
 			dataType: "json",
 			success: function(data) {
 				if($('.page4').css('display') == 'block') {
-						face_id2 = data.face[0].face_id;
-						match_compare();
+					face_id2 = data.face[0].face_id;
+					match_compare();
 
 				}
 				if($('.page7').css('display') == 'block') {
-						face_id2 = data.face[0].face_id;
-						match_compare();
-					}
+					face_id2 = data.face[0].face_id;
+					match_compare();
+				}
+				// 第四页跳转第五页
+				$('.page4 .btn').click(function() {
+					$('.page5').show().siblings().hide();
+				});
+
+				// 第六页跳转第七页
+				$('.page6 label').click(function() {
+
+					$('.page6 #file2').val('');
+
+				})
 
 			},
 			error: function(res) {
