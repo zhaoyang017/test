@@ -1,15 +1,15 @@
 $(function() {
 	//判断设备
-	//  var platfrom = navigator.userAgent;
-	//  var regplatfrom = /iPhone/gi;
-	//  console.log("IOS");
-	//  if(!regplatfrom.test(platfrom)) {
-	//      console.log("Android");
-	//      $("#file").attr("accept", "image/*");
-	//      $("#file").attr("capture", "camera");
-	//      $("#file2").attr("accept", "image/*");
-	//      $("#file2").attr("capture", "camera");
-	//  }
+	  var platfrom = navigator.userAgent;
+	  var regplatfrom = /iPhone/gi;
+	  console.log("IOS");
+	  if(!regplatfrom.test(platfrom)) {
+	      console.log("Android");
+	      $("#file").attr("accept", "image/*");
+	      $("#file").attr("capture", "camera");
+	      $("#file2").attr("accept", "image/*");
+	      $("#file2").attr("capture", "camera");
+	  }
 	// 第一页跳转第二页
 	$('.page1 .btn').click(function() {
 		$('.page2').show().siblings().hide();
