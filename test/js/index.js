@@ -81,6 +81,12 @@ $(function() {
 		}
 	});
 
+	// 第六页跳转第七页
+	$('.page6 label').click(function() {
+	
+		$('.page6 #file2').val('');
+	
+	})
 	// 第五页跳转第六页
 	$('.page5 .btn').click(function() {
 		$('.page6').show().siblings().hide();
@@ -141,7 +147,7 @@ $(function() {
 		$('.forward .img').attr('src', forward);
 		$('.last .img').attr('src', last);
 		$('.star .img').attr('src', star);
-		$('.page8').show().siblings().hide();
+
 	});
 
 	function check_info(uri1, uri2) {
@@ -225,13 +231,11 @@ $(function() {
 				if($('.page7').css('display') == 'block') {
 					face_id2 = data.face[0].face_id;
 					match_compare();
+					$('.page7 .btn').click(function() {
+						$('.page8').show().siblings().hide();
+					});
 					
-					// 第六页跳转第七页
-					$('.page6 label').click(function() {
-	
-						$('.page6 #file2').val('');
-	
-					})
+
 				}
 				
 
