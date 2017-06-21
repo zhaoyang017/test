@@ -109,7 +109,7 @@ function clockArea() {
 /*验证场次信息和验证码*/
 function Verification(local,num){
 	//禁止页面滚动
-	$(document).addEventListener('touchmove',function(e){
+	document.addEventListener('touchmove',function(e){
 		e.preventDefault()
 	});
 	if($('.footer .btn .confirm img').attr('src').indexOf('btn2.png') > 0){
@@ -120,9 +120,12 @@ function Verification(local,num){
 	        dataType: "json",
 	        async: false,
 	        success: function (data) {
+	        	data =true;
 	        	if(data){
 	        		$('.popup').show();
 	        		$('.popup .popupTrue').show().siblings().hide();
+					$('.popup .trueLocation').text(val);
+					$('.popup .trueNum').text($(".code input").val());
 	        	}else{
 	        		$('.popup').show();
 	        		$('.popup .popupFalse').show().siblings().hide();
@@ -167,7 +170,7 @@ $(function() {
 		$(".code input").val('咨询店员获取验证码并输入');
 		$('.footer .btn .confirm img').attr('src', 'img/index/btn.png');
 		//允许页面滚动
-		$(document).removeEventListener('touchmove',function(e){
+		document.removeEventListener('touchmove',function(e){
 			e.preventDefault()
 		});
 	});
@@ -178,14 +181,12 @@ $(function() {
 		$('.footer .btn .confirm img').attr('src', 'img/index/btn.png');
 		//允许页面滚动
 		$(document).removeEventListener('touchmove',function(e){
-		e.preventDefault()
-	});
+			e.preventDefault()
+		});
 	});
 
 	$('.popup .confirmBtn').click(function(){
 		var val = $("#expressArea dl dd").text().toString();
-		$('.popup .trueLocation').text(val);
-		$('.popup .trueNum').text($(".code input").val());
 		$('form .location').attr('value',val);
 		$('form').submit();
 	});
