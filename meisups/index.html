@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>解密皇家第一道奶源</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.lazyload.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="page page1">
+
+			<img class="bg" src="img/index/bg.png" />
+			<img src="img/index/logo.png" class="logo">
+			<img src="img/index/01.png" class="img_01">
+			<img src="img/index/02.png" class="img_02">
+			<div class="img_03 img">
+				<img src="img/index/03.png">
+				<img src="img/index/03.gif" class="gif gif03 lazy">
+			</div>
+			<div class="img_04 img">
+				<img src="img/index/04.png">
+				<img src="img/index/04.gif" class="gif gif04 lazy">
+			</div>
+			<!--忘-->
+			<div class="img_05 img">
+				<img src="img/index/05.png">
+				<img src="img/index/05.gif" class="gif gif05 lazy">
+			</div>
+			<!--闻-->
+			<div class="img_06 img">
+				<img src="img/index/06.png">
+				<img src="img/index/06.gif" class="gif gif06 lazy">
+			</div>
+			<!--品-->
+			<div class="img_07 img">
+				<img src="img/index/07.png">
+				<img src="img/index/07.gif" class="gif gif07 lazy">
+			</div>
+			<!--泡-->
+			<div class="img_08 img">
+				<img src="img/index/08.png">
+				<img src="img/index/08.gif" class="gif gif08 lazy">
+			</div>
+			<img src="img/index/09.png" class="img_09 lazy">
+			<img src="img/index/10.png" class="img_10">
+			<!--		点击参与更多活动按钮-->
+			<!--<a class="img_11" href="">
+			<img src="img/index/btn.png"/>
+		</a>-->
+			<div class="footer">
+				<img src="img/index/ftbg1.png" alt="" class="ftbg" />
+				<div class="iphone">
+					<div class="browser">
+						<!--选择地区-->
+						<section class="express-area">
+							<a id="expressArea" href="javascript:void(0)">
+								<dl>
+									<dd>点击此处选择门店</dd>
+								</dl>
+							</a>
+						</section>
+						<!--选择地区弹层-->
+						<section id="areaLayer" class="express-area-box">
+							<header>
+								<h3>选择门店</h3>
+								<a id="backUp" class="back" href="javascript:void(0)" title="返回"></a>
+								<a id="closeArea" class="close" href="javascript:void(0)" title="关闭"></a>
+							</header>
+							<article id="areaBox">
+								<ul id="areaList" class="area-list"></ul>
+							</article>
+						</section>
+						<!--遮罩层-->
+						<script src="js/jquery.area.js"></script>
+					</div>
+				</div>
+
+				<a class="btn">
+					<!-- 输入验证码 -->
+					<div class="code">
+						<img src="img/index/sel2.png"/>
+						<input type="text" value="咨询店员获取验证码并输入">
+					</div>
+					<!--绑定form的提交按钮-->
+					<label class="confirm">
+						<img src="img/index/btn.png"/>
+					</label>
+				</a>
+				<div class="popup hidden">
+					<div class="popupTrue wrap hidden">
+						<div class="close">
+							<img src="img/index/x.png">
+						</div>
+						<h2>请确认</h2>
+						<p>您选择的门店为</p>
+						<p>孩子王</p>
+						<br>
+						<p>验证码:</p>
+						<p>8888</p>
+						<br>
+						<img src="img/index/confirm.png" class="confirmBtn">
+					</div>
+					<div class="popupFalse wrap hidden">
+						<div class="close">
+							<img src="img/index/x.png">
+						</div>
+						<p>很抱歉</p>
+						<p>门店选择或验证码</p>
+						<p>输入错误</p>
+						<p>请返回重新选择</p>
+						<br>
+						<img src="img/index/back.png" class="backBtn">
+					</div>
+				</div>
+				<form action="">
+					<input type="text" name="location" class="location">
+					<input type="submit">
+				</form>
+			</div>
+		</div>
+		
+	</body>
+
+	<script type="text/javascript">
+		$(function() {
+			$("img.lazy").lazyload({
+				effect: "fadeIn"
+			});
+		});
+	</script>
+
+</html>

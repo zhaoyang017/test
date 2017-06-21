@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+/**CSS Reset**/
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+.iphone {
+	width: 640px;
+	height: 272px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	margin: auto;
+	z-index: 100;
+}
+
+.browser {
+	position: relative;
+	width: 640px;
+	height: 272px;
+	overflow: hidden;
+
+}
+
+
+
+
+/*选择地区*/
+
+.express-area {
+
+
+
+	background: url(../img/index/sel.jpg);
+	width: 376px;
+	margin-left: 130px;
+	height: 61px;
+
+}
+
+
+
+.express-area dl {
+	position: absolute;
+
+	color: #4d525d;
+	width: 328px;
+	left: 0;
+	right: 0;
+	margin: auto;
+
+	
+	
+	
+}
+
+
+.express-area dl dd {
+
+	text-align: justify;
+	font-size: 26.2px;
+	line-height: 62px;
+	width: 306px;
+	height: 62px;
+
+	color: #9f7f34;
+	text-align: center;
+
+	opacity: 0.8;
+	overflow: hidden;
+	-o-text-overflow:ellipsis;
+    -webkit-text-overflow:ellipsis;
+    -moz-text-overflow:ellipsis;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+
+
+
+/*选择地区弹层*/
+
+.express-area-box {
+	position: absolute;
+	bottom: -100%;
+
+	z-index: 15;
+	width: 640px;
+	height: 266px;
+	background-color: #fff;
+	color: #4d525d;
+}
+
+.express-area-box header {
+	position: relative;
+	border-top: 1px solid #e2e2e2;
+	border-bottom: 1px solid #e2e2e2;
+}
+
+.express-area-box header h3 {
+
+	text-align: center;
+	font-size: 24px;
+	line-height: 40px;
+}
+
+.express-area-box header .back,
+.express-area-box header .close {
+	position: absolute;
+	top: 0;
+	width: 48px;
+	height: 48px;
+	/*width: 1.675rem;
+	height: 2.25rem;*/
+}
+
+.express-area-box header .back {
+	display: none;
+	left: 0;
+	background: url(../img/back.png) no-repeat center;
+	background-size: 20px 20px;
+}
+
+.express-area-box header .close {
+	right: 0;
+	background: url(../img/close-area.png) no-repeat center;
+	background-size: 20px 20px;
+}
+
+.express-area-box article {
+	height: 250px;
+	overflow-y: scroll;
+
+}
+
+.area-list li {
+	padding: 8px;
+	border-bottom: 1px solid #e2e2e2;
+
+	font-size: 19px;
+	line-height:30px;
+	/*text-align: center;*/
+	padding-left: 40px;
+	list-style: none;
+}
+
+
+
+
+/*遮罩层*/
+
+.mask {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 12;
+	width: 640px;
+	height: 300px;
+	background-color: rgba(0, 0, 0, .5);
+}
+
