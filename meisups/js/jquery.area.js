@@ -57,8 +57,6 @@ function selectP(p,c) {
 	$('.area-list li').css({
 		'font-size': '20px'
 	});
-
-	// $("#backUp").attr("onClick", "intProvince();").show();
 }
 
 /*选择城市*/
@@ -90,10 +88,8 @@ function selectC(p,c){
 /*选择区县*/
 function selectD(p, c) {
 	clockArea();
-	//获取场次
 	//场次显示出来
 	$("#expressArea dl dd").html(c);
-	
 	if($("#expressArea dl dd").text() != '点击此处选择门店' && $(".code input").val() != '咨询店员获取验证码并输入' && $(".code input").val() != ''){
 		//	当用户选择完场次,按钮变成黄色高亮状态
 		$('.footer .btn .confirm img').attr('src', 'img/index/btn2.png');
@@ -143,11 +139,10 @@ $(function() {
 	/*输入验证码*/
 	$(".code input").focus(function(){
 		$(".code input").val("");
-		$(".code input").attr("type","number");
+		$(".code input").attr("placeholder","");
 	});
 	$(".code input").blur(function(){
-		$(".code input").attr("type","text");
-		$(".code input").attr("value","咨询店员获取验证码并输入");
+		$(".code input").attr("placeholder","咨询店员获取验证码并输入");
 		if($("#expressArea dl dd").text() != '点击此处选择门店' && $(".code input").val() != '咨询店员获取验证码并输入' && $(".code input").val() != ''){
 			//	当用户选择完场次,按钮变成黄色高亮状态
 			$('.footer .btn .confirm img').attr('src', 'img/index/btn2.png');
@@ -172,9 +167,8 @@ $(function() {
 		$(".code input").val('咨询店员获取验证码并输入');
 		$('.footer .btn .confirm img').attr('src', 'img/index/btn.png');
 		//允许页面滚动
-		$(document.body).css({
-		   "overflow-x":"auto",
-		   "overflow-y":"auto"
+		$(document).removeEventListener('touchmove',function(e){
+			e.preventDefault()
 		});
 	});
 	$('.popup .backBtn').click(function(){
@@ -190,6 +184,8 @@ $(function() {
 
 	$('.popup .confirmBtn').click(function(){
 		var val = $("#expressArea dl dd").text().toString();
+		$('.popup .trueLocation').text(val);
+		$('.popup .trueNum').text($(".code input").val());
 		$('form .location').attr('value',val);
 		$('form').submit();
 	});
