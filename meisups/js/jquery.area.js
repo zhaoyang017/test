@@ -111,7 +111,7 @@ var noscroll = function(e){
 /*验证场次信息和验证码*/
 function Verification(local,num){
 	//禁止页面滚动
-	// $('.page1')[0].addEventListener('touchmove',noscroll);
+	$('.page1')[0].addEventListener('touchmove',noscroll);
 	$('.popup .trueLocation').text($("#expressArea dl dd").text().toString());
 	$('.popup .trueNum').text($(".code input").val());
 	if($('.footer .btn .confirm img').attr('src').indexOf('btn2.png') > 0){
