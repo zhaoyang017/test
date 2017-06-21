@@ -105,13 +105,13 @@ function clockArea() {
 	$('.footer .btn').animate({ "z-index": "300" });
 	intProvince();
 }
-
+var noscroll = function(e){
+	e.preventDefault();
+}
 /*验证场次信息和验证码*/
 function Verification(local,num){
 	//禁止页面滚动
-	$('.page1')[0].addEventListener('touchmove',function(e){
-		e.preventDefault()
-	});
+	// $('.page1')[0].addEventListener('touchmove',noscroll);
 	$('.popup .trueLocation').text($("#expressArea dl dd").text().toString());
 	$('.popup .trueNum').text($(".code input").val());
 	if($('.footer .btn .confirm img').attr('src').indexOf('btn2.png') > 0){
@@ -169,9 +169,7 @@ $(function() {
 		$(".code input").val('咨询店员获取验证码并输入');
 		$('.footer .btn .confirm img').attr('src', 'img/index/btn.png');
 		//允许页面滚动
-		$('.page1')[0].removeEventListener('touchmove',function(e){
-			e.preventDefault()
-		});
+		$('.page1')[0].removeEventListener('touchmove',noscroll);
 	});
 	$('.popup .backBtn').click(function(){
 		$('.popup').hide();
@@ -179,9 +177,7 @@ $(function() {
 		$(".code input").val('咨询店员获取验证码并输入');
 		$('.footer .btn .confirm img').attr('src', 'img/index/btn.png');
 		//允许页面滚动
-		$(document).removeEventListener('touchmove',function(e){
-			e.preventDefault()
-		});
+		$('.page1')[0].removeEventListener('touchmove',noscroll);
 	});
 
 	$('.popup .confirmBtn').click(function(){
