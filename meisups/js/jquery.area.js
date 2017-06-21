@@ -112,6 +112,8 @@ function Verification(local,num){
 	document.addEventListener('touchmove',function(e){
 		e.preventDefault()
 	});
+	$('.popup .trueLocation').text(val);
+	$('.popup .trueNum').text($(".code input").val());
 	if($('.footer .btn .confirm img').attr('src').indexOf('btn2.png') > 0){
 		$.ajax({
 			type: 'GET',
@@ -120,12 +122,10 @@ function Verification(local,num){
 	        dataType: "json",
 	        async: false,
 	        success: function (data) {
-	        	data =true;
+	        	data = true;
 	        	if(data){
 	        		$('.popup').show();
 	        		$('.popup .popupTrue').show().siblings().hide();
-					$('.popup .trueLocation').text(val);
-					$('.popup .trueNum').text($(".code input").val());
 	        	}else{
 	        		$('.popup').show();
 	        		$('.popup .popupFalse').show().siblings().hide();
