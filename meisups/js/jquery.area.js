@@ -109,7 +109,7 @@ function clockArea() {
 /*验证场次信息和验证码*/
 function Verification(local,num){
 	//禁止页面滚动
-	document.addEventListener('touchmove',function(e){
+	$('.page1')[0].addEventListener('touchmove',function(e){
 		e.preventDefault()
 	});
 	$('.popup .trueLocation').text($("#expressArea dl dd").text().toString());
@@ -169,7 +169,7 @@ $(function() {
 		$(".code input").val('咨询店员获取验证码并输入');
 		$('.footer .btn .confirm img').attr('src', 'img/index/btn.png');
 		//允许页面滚动
-		document.removeEventListener('touchmove',function(e){
+		$('.page1')[0].removeEventListener('touchmove',function(e){
 			e.preventDefault()
 		});
 	});
