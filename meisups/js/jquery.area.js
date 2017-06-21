@@ -94,7 +94,7 @@ function selectD(p, c) {
 	//场次显示出来
 	$("#expressArea dl dd").html(c);
 	
-	if($("#expressArea dl dd").text() != '点击此处选择门店' && $(".code input").val() != '咨询店员获取验证码并输入'){
+	if($("#expressArea dl dd").text() != '点击此处选择门店' && $(".code input").val() != '咨询店员获取验证码并输入' && $(".code input").val() != ''){
 		//	当用户选择完场次,按钮变成黄色高亮状态
 		$('.footer .btn .confirm img').attr('src', 'img/index/btn2.png');
 		//	当用户选择完场次后,绑定提交按钮,信息提交到后台
@@ -113,9 +113,8 @@ function clockArea() {
 /*验证场次信息和验证码*/
 function Verification(local,num){
 	//禁止页面滚动
-	$(document.body).css({
-	   "overflow-x":"hidden",
-	   "overflow-y":"hidden"
+	$(document).addEventListener('touchmove',function(e){
+		e.preventDefault()
 	});
 	if($('.footer .btn .confirm img').attr('src').indexOf('btn2.png') > 0){
 		$.ajax({
@@ -143,10 +142,13 @@ function Verification(local,num){
 $(function() {
 	/*输入验证码*/
 	$(".code input").focus(function(){
-		$(this).val("");
+		$(".code input").val("");
+		$(".code input").attr("type","number");
 	});
 	$(".code input").blur(function(){
-		if($("#expressArea dl dd").text() != '点击此处选择门店' && $(".code input").val() != '咨询店员获取验证码并输入'){
+		$(".code input").attr("type","text");
+		$(".code input").attr("value","咨询店员获取验证码并输入");
+		if($("#expressArea dl dd").text() != '点击此处选择门店' && $(".code input").val() != '咨询店员获取验证码并输入' && $(".code input").val() != ''){
 			//	当用户选择完场次,按钮变成黄色高亮状态
 			$('.footer .btn .confirm img').attr('src', 'img/index/btn2.png');
 			//	当用户选择完场次后,绑定提交按钮,信息提交到后台
@@ -181,10 +183,9 @@ $(function() {
 		$(".code input").val('咨询店员获取验证码并输入');
 		$('.footer .btn .confirm img').attr('src', 'img/index/btn.png');
 		//允许页面滚动
-		$(document.body).css({
-		   "overflow-x":"auto",
-		   "overflow-y":"auto"
-		});
+		$(document).removeEventListener('touchmove',function(e){
+		e.preventDefault()
+	});
 	});
 
 	$('.popup .confirmBtn').click(function(){
