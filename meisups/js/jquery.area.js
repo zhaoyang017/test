@@ -105,6 +105,8 @@ function clockArea() {
 	$('.footer .btn').animate({ "z-index": "300" });
 	intProvince();
 }
+
+/*禁止滑动*/
 var noscroll = function(e){
 	e.preventDefault();
 }
@@ -112,6 +114,7 @@ var noscroll = function(e){
 function Verification(local,num){
 	//禁止页面滚动
 	$('.page1')[0].addEventListener('touchmove',noscroll);
+
 	$('.popup .trueLocation').text($("#expressArea dl dd").text().toString());
 	$('.popup .trueNum').text($(".code input").val());
 	if($('.footer .btn .confirm img').attr('src').indexOf('btn2.png') > 0){
