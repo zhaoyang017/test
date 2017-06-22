@@ -164,6 +164,7 @@ form{
 ::-webkit-input-placeholder{
 	color: #9f7f34;
 	font-size: 26.2px;
+	opacity: 0.8;
 }
 .footer .btn label.confirm{
  	top: 70px;
