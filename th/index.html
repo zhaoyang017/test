@@ -1,0 +1,751 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>lande</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<script>
+			"use strict";(function(_window){var navigatorUserAgent=navigator.userAgent;var iPhone=navigatorUserAgent.indexOf("iPhone");if(iPhone>-1){var dpr=Number(window.devicePixelRatio),one_dpr=1/dpr}else{var dpr=1,one_dpr=1}var writeText="<meta name=\"viewport\" content=\"width=device-width,initial-scale="+one_dpr+",maximum-scale="+one_dpr+",minimum-scale="+one_dpr+",user-scalable=no\">\n        <meta name=\"'flexible\" content=\"initial-dpr="+dpr+"\">";document.write(writeText);var html=document.getElementsByTagName("html");var F0=75;html[0].setAttribute("data-dpr",dpr);var getFontSize=function getFontSize(){var windowWidth=window.innerWidth;html[0].style.fontSize=F0*windowWidth/750+"px"};getFontSize();_window.addEventListener("resize",getFontSize,false)})(window);
+		</script>
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #000;
+				color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+			#loading{
+				position: absolute; width: 118px;height:56px;background: url(img/menuicon.png) no-repeat;
+				z-index: 999;background-position: -515px -171px;top: 50%;margin-top: -28px;left: 50%;
+				margin-left: -59px;
+			}
+			#tips{position: absolute; width: 120px;height:40px;border: 1px solid rgba(150,150,150,0.8);
+			 top: 50%;margin-top: -20px;left: 50%;margin-left: -60px;opacity: 0;border-radius:2px ;
+			 background-color: rgba(50,50,50,0.2);color: #ffffff;font-size: 20px;line-height: 40px;
+			 text-align: center;
+			 }
+			#fullScreen{
+				position: absolute; width: 62px;height:62px;background: url(img/menuicon.png) no-repeat;
+				z-index: 999;background-position: -130px -660px;top: 20px;right: 20px;
+			}
+			/*#div1{position: absolute;width: 50%;left: 0;}
+			#div2{position: absolute;width: 50%;right: 0;}*/
+			#input{position: absolute; width: 62px;height:62px;background: url(img/menuicon.png) no-repeat;
+			z-index: 999;background-position: -0px -590px;top: 100px;right: 20px;}
+			#text{position: absolute;width: 100%;margin: 0;z-index: 5;top: 0;}
+			/*#div1{position: absolute;left: 0;top: 0;}*/
+		</style>
+	</head>
+
+	<body>
+		<div id="loading">
+			
+		</div>
+		<div id="fullScreen">
+			
+		</div>
+		<div id="tips">
+			
+		</div>
+		<!--<audio autoplay="" loop="" src="audio/johann_sebastian_bach_air.mp3" id="audio">
+		</audio>-->
+		<div id="input">
+			
+		</div>
+		<input style="display: none;" type="text" name="text" id="text" value="" />
+		
+		<script src="js/three.min.js"></script>
+		<script src="js/Projector.js"></script>
+		<script src="js/Tween.js"></script>
+		<script src="js/StereoEffect.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/OrbitControls.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/THREEx.FullScreen.js" type="text/javas8cript" charset="utf-8"></script>
+		<script src="js/miaov.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/DeviceOrientationControls.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var arr=[
+				{pos1X:-30,pos1Y:-70,pos1Z:-500,pos2X:-40,pos2Y:-90,pos2Z:-500,name:'c01',info:'进入场景二'},
+				{pos1X:400,pos1Y:0,pos1Z:-200,pos2X:390,pos2Y:-20,pos2Z:-200,name:'c02',info:'进入场景三'},
+				{pos1X:-250,pos1Y:-70,pos1Z:-100,pos2X:-260,pos2Y:-90,pos2Z:-100,name:'c03',info:'进入场景四'},
+				{pos1X:500,pos1Y:0,pos1Z:0,pos2X:510,pos2Y:-20,pos2Z:0,name:'c04',info:'进入场景五'},
+				{pos1X:-30,pos1Y:-70,pos1Z:-500,pos2X:-40,pos2Y:-90,pos2Z:-500,name:'c05',info:'进入场景一'}
+			];
+			var container,container1,container2, stats,effect;
+			var camera,cameraLeft,cameraRight, scene, renderer,renderer1, renderer2,Controls,Devices;
+			var mouseX = 0, mouseY = 0;
+			var isDeviceing = 0;
+			var onDevice = document.getElementById('input');
+			var oLoading = document.getElementById('loading');
+			var oFullScreen = document.getElementById('fullScreen');
+			var oAudio = document.getElementById('audio');
+			var oText = document.getElementById('text');
+			var oTips = document.getElementById('tips');
+			var spriteA,spriteB ,mesh;
+			var sprite1,sprite2,sprite3,sprite4,sprite5,sprite6;
+			var spritey1,spritey2,spritey3,spritey4,spritey5,spritey6;
+			var group = new THREE.Group();
+			var vector = new THREE.Vector3() ;
+			var raycaster = new THREE.Raycaster();
+			var mapA,mapB;
+			var clock = new THREE.Clock();
+			var iTimer = 0,timer;
+			var isTarget = false,isChanged = false;
+			var materialA, materialB , iLoad;
+			var cursorStatus = 1;
+			var iStatus = 3;
+			// custom global variables
+			var annie1, annie2,annie3; // animators
+			var isUserInteracting = false,
+			onMouseDownMouseX = 0, onMouseDownMouseY = 0,
+			lon = -90,onMouseDownLon = 0,
+			lat = 0, onMouseDownLat = 0,
+			phi = 0, theta = 0,
+			target = new THREE.Vector3();
+			var intersects,distanceCamera=6;
+			init();
+			animate();
+			function init() {
+				container = document.createElement('div');
+				document.body.appendChild( container);
+				scene = new THREE.Scene();
+				scene.add(group);
+				var ambientLight = new THREE.AmbientLight(0xffffff);
+			    scene.add(ambientLight);
+			    camera= new THREE.PerspectiveCamera(140, window.innerWidth / window.innerHeight, 0.1, 10000 );
+			    camera.position.set(0,999,0);
+			    target.set(0,0,0);
+			    camera.lookAt(target);
+			    
+	            var textureLoader1 = new THREE.TextureLoader();
+	            mapA = textureLoader1.load( "img/crosshair01.png");
+	            materialA = new THREE.SpriteMaterial( { map: mapA, color: 0xffffff, fog: true } );
+//
+				spriteA = new THREE.Sprite( materialA );
+				spriteA.scale.set( 20, 20, 1 );
+				iLoad = new TextureAnimator( mapA, 17, 1, 17, 75 );
+				scene.add(spriteA)
+//
+//
+//				spritey1 = makeTextSprite( " XXX岛屿XXX岛屿  ",
+//					{ fontsize: 30, borderColor: {r:100, g:100, b:100, a:0.8}, backgroundColor: {r:150, g:150, b:150, a:0.2} } );
+//				spritey1.position.set(-190,25,-500);
+//				spritey1.name = 'daoyutip';
+//				var textureLoader = new THREE.TextureLoader();
+////	            mapA = textureLoader.load( "img/sprite0.png");
+//				var map1 = textureLoader.load( "img/hotPoint.png");
+//
+//	            materialC = new THREE.SpriteMaterial( { map: map1, color: 0xffffff, fog: true } );
+//	            annie1 = new TextureAnimator( map1, 1, 25, 25, 75 );
+//				sprite1 = new THREE.Sprite( materialC );
+//				sprite1.position.set( -200, 20, -500 );
+//				sprite1.scale.set( 50, 50, 1 );
+//				sprite1.name = 'daoyu';
+
+
+				var texture =new THREE.TextureLoader().load("lande/c01.png",function(){
+					var geometry = new THREE.SphereGeometry(1000, 100, 100);
+//					geometry.scale.y=-1;
+					var material = new THREE.MeshLambertMaterial({
+						map: texture,
+						side: THREE.DoubleSide
+					});
+					mesh = new THREE.Mesh(geometry, material);
+					oLoading.style.display = 'none';
+					scene.add(mesh);
+					mesh.position.set(0, 0, 0);
+					//从高空坠落效果
+					setTimeout(function(){
+						 new TWEEN.Tween(camera.position)
+						.to({ x: 0, y: 0, z: 0 }, 3000)
+						.easing(TWEEN.Easing.Exponential.InOut)
+						.start().onComplete(function(){
+							group.add(sprite2);
+							group.add( spritey2);
+							iStatus =2;
+						});
+						new TWEEN.Tween(target)
+						.to({ x: 0, y: 0, z:-500 }, 3000)
+						.easing(TWEEN.Easing.Exponential.InOut)
+						.start().onComplete(function(){
+
+						});
+						clearInterval(timer);
+						timer=setInterval(function(){
+								camera.fov-=0.2;
+								camera.updateProjectionMatrix();
+								if(camera.fov<=60){
+									camera.fov=60;
+									camera.updateProjectionMatrix();
+									clearInterval(timer);
+								}
+						},1)
+					},1000);
+					//没有高空坠落效果
+//					new TWEEN.Tween(camera.position)
+//						.to({ x: 0, y: 0, z: 0 }, 0)
+//						.easing(TWEEN.Easing.Exponential.InOut)
+//						.start().onComplete(function(){
+//						group.add(sprite2);
+//						group.add( spritey2);
+//						iStatus =2;
+//					});
+//					new TWEEN.Tween(target)
+//						.to({ x: 0, y: 0, z:-500 }, 0)
+//						.easing(TWEEN.Easing.Exponential.InOut)
+//						.start().onComplete(function(){
+//					});
+//					camera.fov=60;
+//					camera.updateProjectionMatrix();
+
+
+				});
+	            
+				//
+				createHotPoint(arr[0]);
+				initDevices();
+				Devices.connect();
+				renderer = new THREE.WebGLRenderer({antialias: true});
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+				
+				effect = new THREE.StereoEffect( renderer);
+				effect._stereo.eyeSep=0.064;
+				effect.setSize( window.innerWidth, window.innerHeight );
+				//
+				onDevice.addEventListener("click", controlDevice, false);
+				onDevice.addEventListener("touchend", controlDevice, false);
+				window.addEventListener( 'resize', onWindowResize, false );
+				renderer.domElement.addEventListener( 'mousedown', onDocumentMouseDown, false );
+				renderer.domElement.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				renderer.domElement.addEventListener( 'mouseup', onDocumentMouseUp, false );
+				renderer.domElement.addEventListener( 'mousewheel', onDocumentMouseWheel, false );
+
+				renderer.domElement.addEventListener( 'touchstart', onDocumentTouchStart, false );
+				renderer.domElement.addEventListener( 'touchmove', onDocumentTouchMove, false );
+				document.addEventListener( 'mouseup', myClick, false );
+				document.addEventListener( 'touchend', myClick, false );
+//				oFullScreen.addEventListener("click", fullScreen, false);
+//				oFullScreen.addEventListener("touchend", fullScreen, false);
+			}
+			function createHotPoint(a){
+				var textureLoader = new THREE.TextureLoader();
+				spritey2 = makeTextSprite(a.info,
+						{ fontsize: 50, borderColor: {r:100, g:100, b:100, a:0.8}, backgroundColor: {r:150, g:150, b:150, a:0.5} } );
+				spritey2.position.set(a.pos1X,a.pos1Y,a.pos1Z);
+//				spritey2.name = 'daoyutip';
+				var map2 = textureLoader.load( "img/spot14.png");
+
+				materialC = new THREE.SpriteMaterial( { map: map2, color: 0xffffff, fog: true } );
+				annie2 = new TextureAnimator( map2, 1, 25, 25, 75 );
+				sprite2 = new THREE.Sprite( materialC );
+				sprite2.position.set(a.pos2X,a.pos2Y,a.pos2Z);
+				sprite2.scale.set( 50, 50, 1 );
+				sprite2.name = a.name;
+			}
+			function fullScreen(){
+				if(oAudio.paused){
+					oTips.innerHTML = '声音已开启';
+					tweenMove(oTips,{'opacity':100},1000,'linear',function(){
+						tweenMove(oTips,{'opacity':0},1000,'linear');
+					});
+					oAudio.play();
+				}else{
+					oTips.innerHTML = '声音已关闭';
+					tweenMove(oTips,{'opacity':100},500,'linear',function(){
+						tweenMove(oTips,{'opacity':0},500,'linear');
+					});
+					oAudio.pause();
+				}
+			}
+			function onDocumentMouseDown( event ) {
+
+				event.preventDefault();
+
+				isUserInteracting = true;
+
+				onPointerDownPointerX = event.clientX;
+				onPointerDownPointerY = event.clientY;
+
+				onPointerDownLon = lon;
+				onPointerDownLat = lat;
+
+			}
+
+			function onDocumentMouseMove( event ) {
+
+				if ( isUserInteracting === true ) {
+
+					lon = ( onPointerDownPointerX - event.clientX ) * 0.1 + onPointerDownLon;
+					lat = ( event.clientY - onPointerDownPointerY ) * 0.1 + onPointerDownLat;
+
+				}
+
+			}
+
+			function onDocumentMouseUp( event ) {
+
+				isUserInteracting = false;
+
+			}
+
+			function onDocumentMouseWheel( event ) {
+
+				camera.fov -= event.wheelDeltaY * 0.05;
+				camera.updateProjectionMatrix();
+
+			}
+
+
+			function onDocumentTouchStart( event ) {
+
+				if ( event.touches.length == 1 ) {
+
+					event.preventDefault();
+
+					onPointerDownPointerX = event.touches[ 0 ].pageX;
+					onPointerDownPointerY = event.touches[ 0 ].pageY;
+
+					onPointerDownLon = lon;
+					onPointerDownLat = lat;
+
+				}
+
+			}
+
+			function onDocumentTouchMove( event ) {
+
+				if ( event.touches.length == 1 ) {
+
+					event.preventDefault();
+
+					lon = ( onPointerDownPointerX - event.touches[0].pageX ) * 0.1 + onPointerDownLon;
+					lat = ( event.touches[0].pageY - onPointerDownPointerY ) * 0.1 + onPointerDownLat;
+
+				}
+
+			}
+			function makeTextSprite( message, parameters ){
+				if ( parameters === undefined ) parameters = {};
+				
+				var fontface = parameters.hasOwnProperty("fontface") ? 
+					parameters["fontface"] : "Arial";
+				
+				var fontsize = parameters.hasOwnProperty("fontsize") ? 
+					parameters["fontsize"] : 16;
+				
+				var borderThickness = parameters.hasOwnProperty("borderThickness") ? 
+					parameters["borderThickness"] : 1;
+				
+				var borderColor = parameters.hasOwnProperty("borderColor") ?
+					parameters["borderColor"] : { r:0, g:0, b:0, a:1.0 };
+				
+				var backgroundColor = parameters.hasOwnProperty("backgroundColor") ?
+					parameters["backgroundColor"] : { r:255, g:255, b:255, a:1.0 };
+			
+//				var spriteAlignment =new THREE.SpriteAlignment.topLeft;
+
+				var canvas = document.createElement('canvas');
+				var context = canvas.getContext('2d');
+				context.font = "Normal " + fontsize + "px " + fontface;
+			    
+				// get size data (height depends only on font size)
+				var metrics = context.measureText( message );
+				var textWidth = metrics.width;
+				
+				// background color
+				context.fillStyle   = "rgba(" + backgroundColor.r + "," + backgroundColor.g + ","
+											  + backgroundColor.b + "," + backgroundColor.a + ")";
+				// border color
+				context.strokeStyle = "rgba(" + borderColor.r + "," + borderColor.g + ","
+											  + borderColor.b + "," + borderColor.a + ")";
+			
+				context.lineWidth = borderThickness;
+				roundRect(context, borderThickness/2, borderThickness/2, textWidth + borderThickness, fontsize * 1.4 + borderThickness, 2);
+				// 1.4 is extra height factor for text below baseline: g,j,p,q.
+				
+				// text color
+				context.fillStyle = "rgba(255, 255, 255, 1.0)";
+			
+				context.fillText( message, borderThickness, fontsize + borderThickness);
+				
+				// canvas contents will be used for a texture
+				var texture = new THREE.Texture(canvas) 
+				texture.needsUpdate = true;
+			
+				var spriteMaterial = new THREE.SpriteMaterial( 
+					{ map: texture, useScreenCoordinates: false} );
+				var sprite = new THREE.Sprite( spriteMaterial );
+				sprite.scale.set(100,50,1.0);
+				return sprite;	
+			}
+			function roundRect(ctx, x, y, w, h, r){
+			    ctx.beginPath();
+			    ctx.moveTo(x+r, y);
+			    ctx.lineTo(x+w-r, y);
+			    ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+			    ctx.lineTo(x+w, y+h-r);
+			    ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+			    ctx.lineTo(x+r, y+h);
+			    ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+			    ctx.lineTo(x, y+r);
+			    ctx.quadraticCurveTo(x, y, x+r, y);
+			    ctx.closePath();
+			    ctx.fill();
+				ctx.stroke();   
+			}
+			function TextureAnimator(texture, tilesHoriz, tilesVert, numTiles, tileDispDuration){	
+				// note: texture passed by reference, will be updated by the update function.
+				
+				this.tilesHorizontal = tilesHoriz;
+				this.tilesVertical = tilesVert;
+				// how many images does this spritesheet contain?
+				//  usually equals tilesHoriz * tilesVert, but not necessarily,
+				//  if there at blank tiles at the bottom of the spritesheet. 
+				this.numberOfTiles = numTiles;
+				texture.wrapS = texture.wrapT = THREE.RepeatWrapping; 
+				texture.repeat.set( 1 / this.tilesHorizontal, 1 / this.tilesVertical );
+			
+				// how long should each image be displayed?
+				this.tileDisplayDuration = tileDispDuration;
+			
+				// how long has the current image been displayed?
+				this.currentDisplayTime = 0;
+			
+				// which image is currently being displayed?
+				this.currentTile = 0;
+					
+				this.update = function( milliSec )
+				{
+					this.currentDisplayTime += milliSec;
+					while (this.currentDisplayTime > this.tileDisplayDuration)
+					{
+						this.currentDisplayTime -= this.tileDisplayDuration;
+						this.currentTile++;
+						
+						var currentColumn = this.currentTile % this.tilesHorizontal;
+						texture.offset.x = currentColumn / this.tilesHorizontal;
+						var currentRow = Math.floor( this.currentTile / this.tilesHorizontal );
+						texture.offset.y = currentRow / this.tilesVertical;
+						if (this.currentTile == this.numberOfTiles)
+							this.currentTile = 0;
+					}
+				};
+			}		
+			function controlDevice(event) {
+		        if (isDeviceing === 0) {
+		            isDeviceing = 1;
+		            onDevice.value = "关闭陀螺仪";
+		        } else {
+		            isDeviceing = 0;
+		            onDevice.value = "开启陀螺仪";
+		        }
+//		        oText.value =isDeviceing;
+		    }
+//		  	function initControls() {
+//		        Controls = new THREE.OrbitControls(camera);
+//		        Controls.rotateSpeed=0.5;
+//		    }
+		  	function initDevices() {
+		        Devices = new THREE.DeviceOrientationControls(camera);
+		    }
+			function onWindowResize() {
+//				initControls();
+//				initDevices();
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				effect.setSize( window.innerWidth, window.innerHeight );
+				
+			}
+			
+			function myClick(event){
+				event.preventDefault();
+				if(isDeviceing === 0 && iStatus ===2){
+					var mouse = new THREE.Vector2();
+					if(event.changedTouches){
+						mouse.x = ( event.changedTouches[0].clientX / window.innerWidth ) * 2 - 1;
+						mouse.y = - ( event.changedTouches[0].clientY / window.innerHeight ) * 2 + 1;	
+					}else{
+						mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+						mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;	
+					}
+					raycaster.setFromCamera( mouse, camera );
+//					raycaster.set( camera.position, vector.sub( camera.position ).normalize());
+					intersects = raycaster.intersectObjects(group.children);
+					if(intersects.length>0){
+//						alert(intersects[0].object.name);
+						if(intersects[0].object.name==='c01'){
+//							group.remove(spritey1);
+							group.remove(spritey2);
+//							group.remove(sprite1);
+							group.remove(sprite2);
+							oLoading.style.display = 'block'; 
+			            	iStatus=1;
+							createHotPoint(arr[1]);
+							var texture =new THREE.TextureLoader().load("lande/c03.jpg",function(){
+								oLoading.style.display = 'none'; 
+			            		iStatus=2;
+								mesh.material.map = texture;
+								mesh.material.needsUpdate = true;
+								group.add(spritey2);
+								group.add(sprite2);
+								
+							});
+						}
+						if(intersects[0].object.name==='c02'){
+//							group.remove(spritey1);
+							group.remove(spritey2);
+//							group.remove(sprite1);
+							group.remove(sprite2);
+							oLoading.style.display = 'block';
+							iStatus=1;
+							createHotPoint(arr[2]);
+							var texture =new THREE.TextureLoader().load("lande/c02.jpg",function(){
+								oLoading.style.display = 'none';
+								iStatus=2;
+								mesh.material.map = texture;
+								mesh.material.needsUpdate = true;
+								group.add(spritey2);
+								group.add(sprite2);
+
+							});
+						}
+						if(intersects[0].object.name==='c03'){
+//							group.remove(spritey1);
+							group.remove(spritey2);
+//							group.remove(sprite1);
+							group.remove(sprite2);
+							oLoading.style.display = 'block';
+							iStatus=1;
+							createHotPoint(arr[3]);
+							var texture =new THREE.TextureLoader().load("lande/c04.jpg",function(){
+								oLoading.style.display = 'none';
+								iStatus=2;
+								mesh.material.map = texture;
+								mesh.material.needsUpdate = true;
+								group.add(spritey2);
+								group.add(sprite2);
+
+							});
+						}
+						if(intersects[0].object.name==='c04'){
+//							group.remove(spritey1);
+							group.remove(spritey2);
+//							group.remove(sprite1);
+							group.remove(sprite2);
+							oLoading.style.display = 'block';
+							iStatus=1;
+							createHotPoint(arr[4]);
+							var texture =new THREE.TextureLoader().load("lande/c05.jpg",function(){
+								oLoading.style.display = 'none';
+								iStatus=2;
+								mesh.material.map = texture;
+								mesh.material.needsUpdate = true;
+								group.add(spritey2);
+								group.add(sprite2);
+
+							});
+						}
+						if(intersects[0].object.name==='c05'){
+//							group.remove(spritey1);
+							group.remove(spritey2);
+//							group.remove(sprite1);
+							group.remove(sprite2);
+							oLoading.style.display = 'block';
+							iStatus=1;
+							createHotPoint(arr[0]);
+							var texture =new THREE.TextureLoader().load("lande/c01.jpg",function(){
+								oLoading.style.display = 'none';
+								iStatus=2;
+								mesh.material.map = texture;
+								mesh.material.needsUpdate = true;
+								group.add(spritey2);
+								group.add(sprite2);
+
+							});
+						}
+					}
+				}
+			}
+			//
+
+			function animate() {
+				requestAnimationFrame( animate );
+				if(isDeviceing === 0){
+					camera.lookAt( target );
+				}
+				render();
+				TWEEN.update();
+				
+//				document.getElementById('text').value ='x:'+ camera.position.x + ' ||| y:'+ camera.position.y + ' ||| z:'+ camera.position.z;
+//				document.getElementById('text').value ='x:'+ target.x + ' ||| y:'+target.y + ' ||| z:'+target.z;
+				var delta = clock.getDelta(); 
+//				console.log(delta);
+//				annie1.update(2000 * delta);
+				annie2.update(2000 * delta);
+//				isDeviceing === 0?Controls.update():Devices.update();
+				if(isDeviceing === 0 && iStatus ===2){
+//					Controls.enabled=true;
+//					Controls.update();
+//					
+					lat = Math.max( - 89, Math.min( 89, lat ) );
+					phi = THREE.Math.degToRad( 90 - lat );
+					theta = THREE.Math.degToRad( lon );
+	//				document.getElementById('text').value = 'phi:'+phi+' || theta:'+theta;
+					target.x = 500 * Math.sin( phi ) * Math.cos( theta );
+					target.y = 500 * Math.cos( phi );
+					target.z = 500 * Math.sin( phi ) * Math.sin( theta );
+					spriteA.position.x = target.x ;
+					spriteA.position.y = target.y ;
+					spriteA.position.z = target.z ;
+//					vector.x=spriteA.position.x;
+//					vector.y=spriteA.position.y;
+//					vector.z=spriteA.position.z;
+					
+				}else{
+//					Controls.enabled=false;
+					if(iStatus ==2){
+						Devices.update();
+						var lon1 = camera.rotation.y;
+						var lat1 = camera.rotation.x;
+						lat1 = Math.max( -Math.PI/2, Math.min( Math.PI/2, lat1 ) );
+						var phi1 =  Math.PI/2 - lat1;
+						var theta1 =-Math.PI/2-lon1;
+						spriteA.position.x = 500 * Math.sin( phi1 ) * Math.cos(theta1 );
+						spriteA.position.y = 500 * Math.cos( phi1 );
+						spriteA.position.z = 500 * Math.sin( phi1 ) * Math.sin(theta1);
+						vector.x=spriteA.position.x;
+						vector.y=spriteA.position.y;
+						vector.z=spriteA.position.z;
+						raycaster.set( camera.position, vector.sub( camera.position ).normalize());
+						intersects = raycaster.intersectObjects(group.children);
+						if(intersects.length>0){
+							iLoad.update(500 * delta);
+							if(iLoad.currentTile ===16){
+								if(intersects[0].object.name==='c01'){
+//							group.remove(spritey1);
+									group.remove(spritey2);
+//							group.remove(sprite1);
+									group.remove(sprite2);
+									oLoading.style.display = 'block';
+									iStatus=1;
+									createHotPoint(arr[1]);
+									var texture =new THREE.TextureLoader().load("lande/c03.jpg",function(){
+										oLoading.style.display = 'none';
+										iStatus=2;
+										mesh.material.map = texture;
+										mesh.material.needsUpdate = true;
+										group.add(spritey2);
+										group.add(sprite2);
+
+									});
+								}
+								if(intersects[0].object.name==='c02'){
+//							group.remove(spritey1);
+									group.remove(spritey2);
+//							group.remove(sprite1);
+									group.remove(sprite2);
+									oLoading.style.display = 'block';
+									iStatus=1;
+									createHotPoint(arr[2]);
+									var texture =new THREE.TextureLoader().load("lande/c02.jpg",function(){
+										oLoading.style.display = 'none';
+										iStatus=2;
+										mesh.material.map = texture;
+										mesh.material.needsUpdate = true;
+										group.add(spritey2);
+										group.add(sprite2);
+
+									});
+								}
+								if(intersects[0].object.name==='c03'){
+//							group.remove(spritey1);
+									group.remove(spritey2);
+//							group.remove(sprite1);
+									group.remove(sprite2);
+									oLoading.style.display = 'block';
+									iStatus=1;
+									createHotPoint(arr[3]);
+									var texture =new THREE.TextureLoader().load("lande/c04.jpg",function(){
+										oLoading.style.display = 'none';
+										iStatus=2;
+										mesh.material.map = texture;
+										mesh.material.needsUpdate = true;
+										group.add(spritey2);
+										group.add(sprite2);
+
+									});
+								}
+								if(intersects[0].object.name==='c04'){
+//							group.remove(spritey1);
+									group.remove(spritey2);
+//							group.remove(sprite1);
+									group.remove(sprite2);
+									oLoading.style.display = 'block';
+									iStatus=1;
+									createHotPoint(arr[4]);
+									var texture =new THREE.TextureLoader().load("lande/c05.jpg",function(){
+										oLoading.style.display = 'none';
+										iStatus=2;
+										mesh.material.map = texture;
+										mesh.material.needsUpdate = true;
+										group.add(spritey2);
+										group.add(sprite2);
+
+									});
+								}
+								if(intersects[0].object.name==='c05'){
+//							group.remove(spritey1);
+									group.remove(spritey2);
+//							group.remove(sprite1);
+									group.remove(sprite2);
+									oLoading.style.display = 'block';
+									iStatus=1;
+									createHotPoint(arr[0]);
+									var texture =new THREE.TextureLoader().load("lande/c01.jpg",function(){
+										oLoading.style.display = 'none';
+										iStatus=2;
+										mesh.material.map = texture;
+										mesh.material.needsUpdate = true;
+										group.add(spritey2);
+										group.add(sprite2);
+
+									});
+								}
+								
+							}
+						}else{
+								iLoad.currentTile =0;
+								mapA.offset.x=0;
+						}
+					}
+				}
+			}
+
+			function render() {
+				if(isDeviceing === 0){
+					renderer.render( scene, camera);
+					if(isChanged){
+						renderer.setSize( window.innerWidth, window.innerHeight );
+						isChanged=false;
+					}
+					
+				}
+				else{
+					effect.render( scene, camera );
+					if(!isChanged){
+						effect.setSize( window.innerWidth, window.innerHeight );
+						isChanged=true;
+					}
+				}	
+			}
+
+		</script>
+
+	</body>
+</html>
