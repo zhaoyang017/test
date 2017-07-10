@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+
+	<body>
+		<p>分享</p>
+	</body>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		wx.hideMenuItems({
+			menuList: ['menuItem: share: timeline','menuItem:share:appMessage','menuItem:share:qq'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+		});
+	</script>
+
+</html>
