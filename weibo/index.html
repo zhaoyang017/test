@@ -1,40 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:wb="http://open.weibo.com/wb">
+
 	<head>
 		<meta charset="utf-8" />
+
 		<meta name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no">
 		<meta property="wb:webmaster" content="e8b3a9ea0ad96556" />
-		<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=YOUR APPKEY" type="text/javascript" charset="utf-8"><
+		<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 		<title></title>
-		<style>
-			*{
-				margin: 0;
-				padding: 0;
-			}
-			img{
-				position: absolute;
-				left: 0;
-				right: 0;
-				top: 0;
-				bottom: 0;
-				margin: auto;
-				width: 400px;
-			}
-		</style>
-	</head>
-	<body>
-		<img src="img/weibo.png"/>
-	</body>
-	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-		$.ajax({
-			type: 'GET',
-		 	url: 'https://api.weibo.com/oauth2/authorize',
 
-//		 	dataType: "json",
-		 	success:function(data){
-		 		consoe.log(data)
-		 	}
-		})
-	</script>
+	</head>
+
+	<body>
+		<!--<img src="img/weibo.png" />-->
+		<wb:share-button appkey="1408823823" addition="simple" type="button" picture_search="false" language="zh_cn"></wb:share-button>
+	</body>
+
+
 </html>
